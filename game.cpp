@@ -11,6 +11,7 @@ int main () {
     cout << "The secret number is " << SECRET_NUMBER << endl;
 
     int number, attempts = 0;
+    double points = 1000.0; 
     while(true) {
         attempts++;
         cout << "What is your number?" << endl;
@@ -25,6 +26,10 @@ int main () {
         } else if (number < SECRET_NUMBER) {
             cout << "Wrong choice! Your number is smaller than the secret number." << endl;
         }
+
+        double lossPoints = abs(number - SECRET_NUMBER) / 2.0;
+        points = points - lossPoints;
     }
     cout << "You answered the correct number in " << attempts << " attempts!" << endl;
+    cout << "Your pontuation was " << points << endl;
 }
