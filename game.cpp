@@ -31,5 +31,7 @@ int main () {
         points = points - lossPoints;
     }
     cout << "You answered the correct number in " << attempts << " attempts!" << endl;
+    cout.precision(2);
+    cout << fixed;
     cout << "Your pontuation was " << points << endl;
 }
