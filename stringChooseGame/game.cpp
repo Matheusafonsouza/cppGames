@@ -38,6 +38,11 @@ vector<string> readFile() {
     ifstream file;
     file.open("words.txt");
 
+    if (!file.is_open()) {
+        cout << "File not found :(." << endl;
+        exit(0);
+    }
+
     int wordsLength;
     file >> wordsLength;
 
@@ -52,6 +57,7 @@ vector<string> readFile() {
         words.push_back(word);
     }
     
+    file.close();
     return words;
 }
 
