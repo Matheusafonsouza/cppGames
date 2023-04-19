@@ -18,6 +18,19 @@ bool checkLetterExists(char playerChar) {
     return false;
 }
 
+bool checkWrongWord() {
+    for(char letter : SECRET_WORD) {
+        if(!alreadyChoiced[letter]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool notHanged() {
+    return wrongLetters.size() < SECRET_WORD.length();
+}
+
 int main () {
     cout << "***********************" << endl;
     cout << "* Welcome to the game *" << endl;
@@ -28,7 +41,7 @@ int main () {
     char playerLetter;
     int attempts = 0;
     double points = 1000.0; 
-    while(true) {
+    while(checkWrongWord() && notHanged()) {
         cout << "Wrong letters: ";
         for(char letter : wrongLetters) {
             cout << letter << " ";
