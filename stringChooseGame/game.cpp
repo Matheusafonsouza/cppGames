@@ -1,11 +1,13 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <vector>
 
 using namespace std;
 
 const string SECRET_WORD = "APPLE";
 map<char, bool> alreadyChoiced;
+vector<char> wrongLetters;
 
 bool checkLetterExists(char playerChar) {
     for(char letter : SECRET_WORD) {
@@ -27,6 +29,12 @@ int main () {
     int attempts = 0;
     double points = 1000.0; 
     while(true) {
+        cout << "Wrong letters: ";
+        for(char letter : wrongLetters) {
+            cout << letter << " ";
+        }
+        cout << endl;
+
         for(char letter : SECRET_WORD) {
             if (alreadyChoiced[letter]) {
                 cout << letter << " ";
@@ -47,6 +55,7 @@ int main () {
         } else {
             cout << "Wrong choice! Your letter isnt on the secret word." << endl;
             alreadyChoiced[playerLetter] = false;
+            wrongLetters.push_back(playerLetter);
         }
     }
 
