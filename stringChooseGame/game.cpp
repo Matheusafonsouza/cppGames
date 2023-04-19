@@ -6,8 +6,8 @@ using namespace std;
 const string SECRET_WORD = "APPLE";
 
 bool checkLetterExists(char playerChar) {
-    for(int i = 0; i < SECRET_WORD.size(); i++) {
-        if (playerChar == SECRET_WORD[i]) {
+    for(char letter : SECRET_WORD) {
+        if (playerChar == letter) {
             return true;
         }
     }
@@ -21,20 +21,20 @@ int main () {
 
     cout << "The secred word is " << SECRET_WORD << endl;
 
-    char playerChar;
+    char playerLetter;
     int attempts = 0, playerAttemptsLimit = 10;
     double points = 1000.0; 
     while(attempts < playerAttemptsLimit) {
         attempts++;
-        cout << "What is your char?" << endl;
-        cin >> playerChar;
-        cout << "Your char is " << playerChar << endl;
+        cout << "What is your letter?" << endl;
+        cin >> playerLetter;
+        cout << "Your letter is " << playerLetter << endl;
 
-        if (checkLetterExists(playerChar)) {
-            cout << "Congratulations! Your char is correct :)" << endl;
+        if (checkLetterExists(playerLetter)) {
+            cout << "Congratulations! Your letter is correct :)" << endl;
             break;
         } else {
-            "Wrong choice! Try again.";
+            cout << "Wrong choice! Your letter isnt on the secret word." << endl;
         }
     }
 
