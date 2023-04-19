@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -24,7 +26,8 @@ int main () {
         playerAttemptsLimit = 5;
     }
 
-    const int SECRET_NUMBER = 32;
+    srand(time(NULL));
+    const int SECRET_NUMBER = rand() % 100;
     cout << "The secret number is " << SECRET_NUMBER << endl;
 
     int number, attempts = 0;
