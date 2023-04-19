@@ -10,16 +10,21 @@ int main () {
     const int SECRET_NUMBER = 32;
     cout << "The secret number is " << SECRET_NUMBER << endl;
 
-    int number;
-    cout << "What is your number?" << endl;
-    cin >> number;
-    cout << "Your number is " << number << endl;
+    int number, attempts = 0;
+    while(true) {
+        attempts++;
+        cout << "What is your number?" << endl;
+        cin >> number;
+        cout << "Your number is " << number << endl;
 
-    if (number == SECRET_NUMBER) {
-        cout << "Congratulations! Your number is correct :)" << endl;
-    } else if (number > SECRET_NUMBER) {
-        cout << "Wrong choice! Your number is bigger than the secret number." << endl;
-    } else if (number < SECRET_NUMBER) {
-        cout << "Wrong choice! Your number is smaller than the secret number." << endl;
+        if (number == SECRET_NUMBER) {
+            cout << "Congratulations! Your number is correct :)" << endl;
+            break;
+        } else if (number > SECRET_NUMBER) {
+            cout << "Wrong choice! Your number is bigger than the secret number." << endl;
+        } else if (number < SECRET_NUMBER) {
+            cout << "Wrong choice! Your number is smaller than the secret number." << endl;
+        }
     }
+    cout << "You answered the correct number in " << attempts << " attempts!" << endl;
 }
