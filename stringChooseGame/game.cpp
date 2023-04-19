@@ -2,15 +2,18 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <fstream>
+#include <ctime>
+#include <cstdlib>
 
 using namespace std;
 
-const string SECRET_WORD = "APPLE";
+string secret_word = "APPLE";
 map<char, bool> alreadyChoiced;
 vector<char> wrongLetters;
 
 bool checkLetterExists(char playerChar) {
-    for(char letter : SECRET_WORD) {
+    for(char letter : secret_word) {
         if (playerChar == letter) {
             return true;
         }
@@ -19,7 +22,7 @@ bool checkLetterExists(char playerChar) {
 }
 
 bool checkWrongWord() {
-    for(char letter : SECRET_WORD) {
+    for(char letter : secret_word) {
         if(!alreadyChoiced[letter]) {
             return true;
         }
@@ -28,7 +31,37 @@ bool checkWrongWord() {
 }
 
 bool notHanged() {
-    return wrongLetters.size() < SECRET_WORD.length();
+    return wrongLetters.size() < secret_word.length();
+}
+
+vector<string> readFile() {
+    ifstream file;
+    file.open("words.txt");
+
+    int wordsLength;
+    file >> wordsLength;
+
+    cout << "The file have " << wordsLength << " words." << endl;
+
+    vector<string> words;
+
+    for(int i = 0; i < wordsLength; i++) {
+        string word;
+        file >> word;
+        cout << "On line " << i << " : " << word << endl;
+        words.push_back(word);
+    }
+    
+    return words;
+}
+
+string chooseWord() {
+    vector<string> words = readFile();
+
+    srand(time(NULL));
+    int index = rand() % word.size();
+
+    secret_word = words[index];
 }
 
 int main () {
@@ -36,7 +69,7 @@ int main () {
     cout << "* Welcome to the game *" << endl;
     cout << "***********************" << endl;
 
-    cout << "The secred word is " << SECRET_WORD << endl;
+    chooseWord();
 
     char playerLetter;
     int attempts = 0;
@@ -48,7 +81,7 @@ int main () {
         }
         cout << endl;
 
-        for(char letter : SECRET_WORD) {
+        for(char letter : secret_word) {
             if (alreadyChoiced[letter]) {
                 cout << letter << " ";
             } else {
